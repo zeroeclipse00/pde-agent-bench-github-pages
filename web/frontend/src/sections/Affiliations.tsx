@@ -42,15 +42,15 @@ export default function Affiliations() {
                 title={fullName}
                 className="flex flex-col items-center justify-end gap-3 w-40"
               >
-                <div className="h-24 flex items-center justify-center">
+                <div className="h-24 w-36 flex items-center justify-center rounded-xl bg-slate-50 border border-slate-200/70 px-4 transition-shadow hover:shadow-sm">
                   {hasLogo ? (
                     <img
                       src={withBase(`logos/${meta!.file}`)}
                       alt={fullName}
-                      className="max-h-24 max-w-[140px] object-contain"
+                      className="max-h-16 max-w-[120px] object-contain"
                     />
                   ) : (
-                    <span className="text-3xl font-bold text-ink-900">{abbr}</span>
+                    <span className="text-2xl font-bold text-ink-900">{abbr}</span>
                   )}
                 </div>
                 <div className="text-xs text-slate-600 font-medium tracking-wide">
