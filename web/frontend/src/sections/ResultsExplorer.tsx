@@ -20,6 +20,13 @@ import { cn, BACKEND_LABELS } from "@/lib/utils";
 
 const PALETTE = ["#3f60e6", "#22d3ee", "#a78bfa", "#f59e0b", "#fb7185", "#34d399", "#0ea5e9", "#ef4444"];
 
+function displayLabel(row: { model: string; agent: string | null; provider: string }) {
+  if (!row.agent) return row.model;
+  const parts = row.provider.split("·");
+  const llm = parts[parts.length - 1]?.trim();
+  return llm ? `${row.model} (${llm})` : row.model;
+}
+
 export default function ResultsExplorer() {
   const [backend, setBackend] = useState<string>("dolfinx");
   const { data: rows = [] } = useLeaderboard(backend);
@@ -50,7 +57,7 @@ export default function ResultsExplorer() {
   const barData = useMemo(
     () =>
       sortedRows.map((m) => ({
-        model: m.model,
+        model: displayLabel(m),
         "Pass Rate": m.passRate,
       })),
     [sortedRows],
@@ -105,7 +112,7 @@ export default function ResultsExplorer() {
                   {sortedRows.map((m, i) => (
                     <Radar
                       key={m.model}
-                      name={m.model}
+                      name={displayLabel(m)}
                       dataKey={m.model}
                       stroke={PALETTE[i % PALETTE.length]}
                       fill={PALETTE[i % PALETTE.length]}
@@ -137,7 +144,7 @@ export default function ResultsExplorer() {
                   <YAxis
                     type="category"
                     dataKey="model"
-                    width={140}
+                    width={190}
                     tick={{ fontSize: 11, fill: "#475569" }}
                   />
                   <Tooltip cursor={{ fill: "rgba(63,96,230,0.06)" }} />
