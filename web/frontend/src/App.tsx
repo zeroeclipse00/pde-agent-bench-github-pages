@@ -1,6 +1,7 @@
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import Authors from "./sections/Authors";
+import Affiliations from "./sections/Affiliations";
 import Abstract from "./sections/Abstract";
 import FigureGallery from "./sections/FigureGallery";
 import PDETypes from "./sections/PDETypes";
@@ -19,6 +20,7 @@ export default function App() {
       <main>
         <Hero />
         <Authors />
+        <Affiliations />
         <Abstract />
         <FigureGallery />
         <PDETypes />
