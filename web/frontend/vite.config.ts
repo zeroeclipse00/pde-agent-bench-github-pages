@@ -2,9 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 
-// GH Pages serves the site under https://<user>.github.io/pde-agent-bench/.
+// GH Pages serves the site under https://<user>.github.io/pde-agent-bench-github-pages/.
 // Builds use that base path so all asset URLs are correct; dev mode keeps "/".
-const REPO_BASE = "/pde-agent-bench/";
+const REPO_BASE = "/pde-agent-bench-github-pages/";
 
 export default defineConfig(({ command }) => ({
   base: command === "build" ? REPO_BASE : "/",
