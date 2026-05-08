@@ -27,7 +27,7 @@ export default function Affiliations() {
         <div className="text-center mb-8">
           <span className="section-tag">Affiliations</span>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 max-w-5xl mx-auto">
+        <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-10 max-w-6xl mx-auto">
           {data.affiliations.map((abbr, i) => {
             const meta = LOGO_MAP[abbr];
             const fullName = meta?.fullName ?? abbr;
@@ -40,22 +40,20 @@ export default function Affiliations() {
                 viewport={{ once: true }}
                 transition={{ delay: Math.min(i * 0.04, 0.4) }}
                 title={fullName}
-                className="group flex flex-col items-center justify-end gap-2 w-28"
+                className="flex flex-col items-center justify-end gap-3 w-40"
               >
-                <div className="h-14 flex items-center justify-center">
+                <div className="h-24 flex items-center justify-center">
                   {hasLogo ? (
                     <img
                       src={withBase(`logos/${meta!.file}`)}
                       alt={fullName}
-                      className="max-h-14 max-w-[88px] object-contain grayscale opacity-70 transition-all duration-200 group-hover:grayscale-0 group-hover:opacity-100"
+                      className="max-h-24 max-w-[140px] object-contain"
                     />
                   ) : (
-                    <span className="text-2xl font-bold text-slate-400 transition-colors group-hover:text-ink-900">
-                      {abbr}
-                    </span>
+                    <span className="text-3xl font-bold text-ink-900">{abbr}</span>
                   )}
                 </div>
-                <div className="text-[11px] text-slate-500 font-medium tracking-wide">
+                <div className="text-xs text-slate-600 font-medium tracking-wide">
                   {abbr}
                 </div>
               </motion.div>
