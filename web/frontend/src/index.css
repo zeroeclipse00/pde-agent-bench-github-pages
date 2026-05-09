@@ -54,6 +54,14 @@
   }
 }
 
+/* arxiv-style paper reader */
+.prose-paper p { margin-bottom: 0.85rem; }
+.prose-paper h2 { font-family: "Times New Roman", "Liberation Serif", Georgia, serif; }
+.prose-paper section { font-family: "Times New Roman", "Liberation Serif", Georgia, serif; }
+.prose-paper figure img { background: #fff; }
+.prose-paper .katex { font-size: 1em; }
+.prose-paper .katex-display { margin: 0.6em 0; }
+
 /* hero gradient grid */
 .hero-bg {
   background:

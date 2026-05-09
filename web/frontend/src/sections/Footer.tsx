@@ -1,6 +1,8 @@
 import { Github, Database, BookOpen, Mail } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 export default function Footer() {
+  const t = useT();
   return (
     <footer className="bg-ink-900 text-white/70 py-10 border-t border-white/5">
       <div className="container-page">
@@ -9,14 +11,14 @@ export default function Footer() {
             <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-accent-cyan grid place-items-center text-white font-serif italic text-xl">
               ∂
             </span>
-            <span className="font-bold text-white">PDEAgent-Bench</span>
+            <span className="font-bold text-white">{t("footer.brand")}</span>
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-1 text-sm">
-            <FooterLink href="#leaderboard">Leaderboard</FooterLink>
-            <FooterLink href="#explorer">Explorer</FooterLink>
-            <FooterLink href="#findings">Findings</FooterLink>
-            <FooterLink href="#getting-started">Get Started</FooterLink>
+            <FooterLink href="#leaderboard">{t("nav.leaderboard")}</FooterLink>
+            <FooterLink href="#explorer">{t("nav.explorer")}</FooterLink>
+            <FooterLink href="#findings">{t("nav.findings")}</FooterLink>
+            <FooterLink href="#getting-started">{t("nav.gettingStarted")}</FooterLink>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -26,16 +28,16 @@ export default function Footer() {
               Icon={Database}
               label="HuggingFace"
             />
-            <IconLink href="#citation" Icon={BookOpen} label="Paper" />
-            <IconLink href="mailto:contact@pdeagent.dev" Icon={Mail} label="Contact" />
+            <IconLink href="#/paper" Icon={BookOpen} label="Paper" />
+            <IconLink href="mailto:wanghong1700@mail.ustc.edu.cn" Icon={Mail} label="Contact" />
           </div>
         </div>
 
         <div className="mt-8 pt-6 border-t border-white/10 text-xs text-white/50 flex flex-wrap items-center justify-between gap-2">
-          <p>© 2026 PDEAgent-Bench. All rights reserved.</p>
+          <p>{t("footer.copyright")}</p>
           <p>
             <a href="#home" className="hover:text-white">
-              Back to top ↑
+              {t("footer.backToTop")}
             </a>
           </p>
         </div>

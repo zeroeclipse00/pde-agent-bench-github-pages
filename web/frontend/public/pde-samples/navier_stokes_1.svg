@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <rect width="200" height="150" fill="#f8fafc"/>
+  <rect x="20" y="15" width="160" height="120" fill="#ede9fe" rx="6"/>
+  <circle cx="65" cy="75" r="13" fill="#1e1b4b"/>
+  <g stroke="#7c3aed" stroke-width="1.1" fill="none">
+    <path d="M25,40 Q60,40 80,55 Q105,68 130,52 Q160,40 175,42"/>
+    <path d="M25,55 Q55,55 75,68 Q105,85 135,68 Q160,57 175,57"/>
+    <path d="M25,75 L52,75 M85,75 Q120,75 175,75"/>
+    <path d="M25,95 Q55,95 75,82 Q105,65 135,82 Q160,93 175,93"/>
+    <path d="M25,110 Q60,110 80,95 Q105,82 130,98 Q160,110 175,108"/>
+    <circle cx="100" cy="92" r="5" stroke-dasharray="2 2"/>
+    <circle cx="115" cy="60" r="4" stroke-dasharray="2 2"/>
+  </g>
+  <text x="100" y="146" font-family="ui-monospace, monospace" font-size="9" fill="#475569" text-anchor="middle">Navier–Stokes · vortex shedding</text>
+</svg>

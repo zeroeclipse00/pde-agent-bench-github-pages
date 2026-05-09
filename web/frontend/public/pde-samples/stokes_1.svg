@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <rect width="200" height="150" fill="#f8fafc"/>
+  <rect x="20" y="15" width="160" height="120" fill="#ede9fe" rx="6"/>
+  <rect x="40" y="35" width="120" height="80" fill="#c4b5fd" opacity="0.45" rx="3"/>
+  <g stroke="#6d28d9" stroke-width="1.1" fill="none" marker-end="url(#sarr)">
+    <path d="M40,40 Q100,38 160,40"/>
+    <path d="M40,55 Q100,52 160,55"/>
+    <path d="M40,75 Q100,70 160,75"/>
+    <path d="M40,95 Q100,92 160,95"/>
+    <path d="M40,110 Q100,108 160,110"/>
+  </g>
+  <defs>
+    <marker id="sarr" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,5 L4,2.5 Z" fill="#6d28d9"/>
+    </marker>
+  </defs>
+  <text x="100" y="146" font-family="ui-monospace, monospace" font-size="9" fill="#475569" text-anchor="middle">Stokes · channel flow (creeping)</text>
+</svg>

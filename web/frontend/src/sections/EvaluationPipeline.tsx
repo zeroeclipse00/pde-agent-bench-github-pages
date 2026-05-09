@@ -1,44 +1,74 @@
 import { motion } from "framer-motion";
 import { Cog, Target, Timer, ArrowRight } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
-
-const gates = [
-  {
-    icon: Cog,
-    name: "Execution Gate",
-    desc: "Code runs without syntax errors, import failures, or runtime exceptions within timeout.",
-    color: "from-slate-500 to-slate-700",
-  },
-  {
-    icon: Target,
-    name: "Accuracy Gate",
-    desc: "Relative L₂ error vs. the oracle solution falls below threshold (default 10×).",
-    color: "from-brand-500 to-brand-700",
-  },
-  {
-    icon: Timer,
-    name: "Time Gate",
-    desc: "Wall-clock runtime is within tolerance of the oracle solver (default 3×).",
-    color: "from-accent-cyan to-accent-violet",
-  },
-];
-
-const metrics = [
-  { glyph: "L₂", color: "bg-blue-100 text-blue-700", title: "Relative L₂ Error", desc: "‖u_h − u_ref‖₂ / ‖u_ref‖₂ on a shared evaluation grid." },
-  { glyph: "⏱", color: "bg-emerald-100 text-emerald-700", title: "Runtime", desc: "Wall-clock execution time in an isolated sandbox with controlled resources." },
-  { glyph: "%", color: "bg-amber-100 text-amber-700", title: "Pass Rate", desc: "Fraction of cases passing all three gates." },
-  { glyph: "$", color: "bg-pink-100 text-pink-700", title: "Cost / 1K", desc: "Total API cost in USD per 1,000 benchmark cases." },
-];
+import TeX from "@/components/TeX";
+import { useT } from "@/lib/i18n";
 
 export default function EvaluationPipeline() {
+  const t = useT();
+
+  const gates = [
+    {
+      icon: Cog,
+      name: t("eval.gate.exec.name"),
+      desc: t("eval.gate.exec.desc"),
+      color: "from-slate-500 to-slate-700",
+    },
+    {
+      icon: Target,
+      name: t("eval.gate.acc.name"),
+      desc: t("eval.gate.acc.desc"),
+      color: "from-brand-500 to-brand-700",
+    },
+    {
+      icon: Timer,
+      name: t("eval.gate.time.name"),
+      desc: t("eval.gate.time.desc"),
+      color: "from-accent-cyan to-accent-violet",
+    },
+  ];
+
+  const metrics: { glyph: string; color: string; title: string; desc: React.ReactNode }[] = [
+    {
+      glyph: "L₂",
+      color: "bg-blue-100 text-blue-700",
+      title: t("eval.metric.l2"),
+      desc: (
+        <>
+          <TeX
+            math={String.raw`e(u)=\dfrac{\lVert u-u_{\mathrm{GT}}\rVert_{L^{2}}}{\lVert u_{\mathrm{GT}}\rVert_{L^{2}}}`}
+            block
+          />
+          <span className="block mt-1 text-[11px] text-slate-500">
+            {t("eval.metric.l2.note")}
+          </span>
+        </>
+      ),
+    },
+    {
+      glyph: "⏱",
+      color: "bg-emerald-100 text-emerald-700",
+      title: t("eval.metric.runtime"),
+      desc: t("eval.metric.runtime.desc"),
+    },
+    {
+      glyph: "%",
+      color: "bg-amber-100 text-amber-700",
+      title: t("eval.metric.passRate"),
+      desc: t("eval.metric.passRate.desc"),
+    },
+    {
+      glyph: "$",
+      color: "bg-pink-100 text-pink-700",
+      title: t("eval.metric.cost"),
+      desc: t("eval.metric.cost.desc"),
+    },
+  ];
+
   return (
     <section id="metrics" className="py-20">
       <div className="container-page">
-        <SectionHeader
-          tag="Evaluation"
-          title="Three-Stage Gate System"
-          desc="Each generated solver is evaluated through a staged protocol that mirrors real scientific workflows: first executability, then numerical accuracy, then computational efficiency."
-        />
+        <SectionHeader tag={t("eval.tag")} title={t("eval.title")} desc={t("eval.desc")} />
 
         <div className="flex flex-col md:flex-row items-stretch gap-3 max-w-5xl mx-auto">
           {gates.map((g, i) => (
@@ -70,7 +100,7 @@ export default function EvaluationPipeline() {
             <div key={m.title} className="card p-5">
               <div className={`w-11 h-11 rounded-lg ${m.color} grid place-items-center font-bold`}>{m.glyph}</div>
               <div className="mt-3 font-semibold text-ink-900 text-sm">{m.title}</div>
-              <p className="mt-1 text-xs text-slate-600 leading-relaxed">{m.desc}</p>
+              <div className="mt-1 text-xs text-slate-600 leading-relaxed">{m.desc}</div>
             </div>
           ))}
         </div>

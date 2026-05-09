@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import { Github, BookOpen, Database, Menu, X } from "lucide-react";
+import { Github, BookOpen, Database, Menu, X, Languages } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const links = [
-  { href: "#leaderboard", label: "Leaderboard" },
-  { href: "#explorer", label: "Explorer" },
-  { href: "#findings", label: "Findings" },
-  { href: "#getting-started", label: "Get Started" },
-];
+import { useLang } from "@/lib/i18n";
 
 export default function Navbar() {
+  const { lang, toggle, t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { href: "#leaderboard", label: t("nav.leaderboard") },
+    { href: "#explorer", label: t("nav.explorer") },
+    { href: "#findings", label: t("nav.findings") },
+    { href: "#errors", label: t("nav.errors") },
+    { href: "#getting-started", label: t("nav.gettingStarted") },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -19,6 +22,9 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const langLabel = lang === "en" ? "中文" : "EN";
+  const langTitle = lang === "en" ? "切换到中文" : "Switch to English";
 
   return (
     <header
@@ -56,13 +62,13 @@ export default function Navbar() {
           ))}
           <span className="mx-2 h-6 w-px bg-slate-300/40" />
           <a
-            href="#citation"
+            href="#/paper"
             className={cn(
               "btn !py-1.5 !px-3 text-xs",
               scrolled ? "btn-secondary" : "btn-ghost text-white",
             )}
           >
-            <BookOpen className="w-3.5 h-3.5" /> Paper
+            <BookOpen className="w-3.5 h-3.5" /> {t("nav.paper")}
           </a>
           <a
             href="https://huggingface.co/datasets/eclipse00/PDEAgent-Bench"
@@ -73,7 +79,7 @@ export default function Navbar() {
               scrolled ? "btn-secondary" : "btn-ghost text-white",
             )}
           >
-            <Database className="w-3.5 h-3.5" /> Dataset
+            <Database className="w-3.5 h-3.5" /> {t("nav.dataset")}
           </a>
           <a
             href="https://github.com/YusanX/pde-agent-bench"
@@ -81,17 +87,48 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="btn btn-primary !py-1.5 !px-3 text-xs"
           >
-            <Github className="w-3.5 h-3.5" /> GitHub
+            <Github className="w-3.5 h-3.5" /> {t("nav.github")}
           </a>
+          <button
+            type="button"
+            onClick={toggle}
+            title={langTitle}
+            aria-label={langTitle}
+            className={cn(
+              "ml-1 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors",
+              scrolled
+                ? "text-ink-700 hover:bg-slate-100 border border-slate-200"
+                : "text-white/90 hover:bg-white/10 border border-white/20",
+            )}
+          >
+            <Languages className="w-3.5 h-3.5" />
+            {langLabel}
+          </button>
         </nav>
 
-        <button
-          className={cn("md:hidden p-2 rounded-lg", scrolled ? "text-ink-900" : "text-white")}
-          onClick={() => setOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <button
+            type="button"
+            onClick={toggle}
+            title={langTitle}
+            aria-label={langTitle}
+            className={cn(
+              "px-2 py-1.5 rounded-lg text-xs font-semibold",
+              scrolled
+                ? "text-ink-700 hover:bg-slate-100 border border-slate-200"
+                : "text-white/90 hover:bg-white/10 border border-white/20",
+            )}
+          >
+            {langLabel}
+          </button>
+          <button
+            className={cn("p-2 rounded-lg", scrolled ? "text-ink-900" : "text-white")}
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -114,7 +151,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="btn btn-primary flex-1 text-xs"
               >
-                <Github className="w-3.5 h-3.5" /> GitHub
+                <Github className="w-3.5 h-3.5" /> {t("nav.github")}
               </a>
               <a
                 href="https://huggingface.co/datasets/eclipse00/PDEAgent-Bench"
@@ -122,7 +159,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="btn btn-secondary flex-1 text-xs"
               >
-                <Database className="w-3.5 h-3.5" /> Dataset
+                <Database className="w-3.5 h-3.5" /> {t("nav.dataset")}
               </a>
             </div>
           </div>

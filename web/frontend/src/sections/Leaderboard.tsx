@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp, ArrowUpDown } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import { useLeaderboard, type LeaderboardRow } from "@/lib/api";
 import { cn, fmtPct, rankColor, BACKEND_LABELS } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 type SortKey = "passRate" | "costPer1K";
 const DEFAULT_DIR: Record<SortKey, "asc" | "desc"> = {
@@ -15,6 +16,7 @@ export default function Leaderboard() {
   const [sort, setSort] = useState<SortKey>("passRate");
   const [dir, setDir] = useState<"asc" | "desc">("desc");
   const { data, isLoading } = useLeaderboard(backend);
+  const t = useT();
 
   const rows = useMemo(() => {
     const r = (data ?? []).slice();
@@ -48,9 +50,9 @@ export default function Leaderboard() {
     <section id="leaderboard" className="py-20">
       <div className="container-page">
         <SectionHeader
-          tag="Rankings"
-          title="Single-Shot Pass Rates"
-          desc="Single-shot case-level pass rates by FEM library track. DOLFINx is the primary track (645 cases, 11 families); Firedrake and deal.II are reduced cross-library tracks. Numbers are taken directly from Tables 2 and 9 of the paper."
+          tag={t("lb.tagSection")}
+          title={t("lb.titleSection")}
+          desc={t("lb.descSection")}
         />
 
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
@@ -71,7 +73,7 @@ export default function Leaderboard() {
             ))}
           </div>
           <div className="text-xs text-slate-500 italic">
-            API cost is the total spend across all three FEM-library tracks (Table 9).
+            {t("lb.note")}
           </div>
         </div>
 
@@ -80,17 +82,17 @@ export default function Leaderboard() {
             <table className="w-full text-sm">
               <thead className="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-600">
                 <tr>
-                  <th className="text-left px-4 py-3 w-14">#</th>
-                  <th className="text-left px-4 py-3">Model</th>
-                  <th className="text-left px-4 py-3">Type</th>
+                  <th className="text-left px-4 py-3 w-14">{t("lb.col.hash")}</th>
+                  <th className="text-left px-4 py-3">{t("lb.col.model")}</th>
+                  <th className="text-left px-4 py-3">{t("lb.col.type")}</th>
                   <th className="text-right px-4 py-3 cursor-pointer select-none" onClick={() => handleSort("passRate")}>
                     <div className="inline-flex items-center gap-1 justify-end">
-                      Pass Rate <SortIcon k="passRate" />
+                      {t("lb.col.passRate")} <SortIcon k="passRate" />
                     </div>
                   </th>
                   <th className="text-right px-4 py-3 cursor-pointer select-none" onClick={() => handleSort("costPer1K")}>
                     <div className="inline-flex items-center gap-1 justify-end">
-                      API Cost <SortIcon k="costPer1K" />
+                      {t("lb.col.apiCost")} <SortIcon k="costPer1K" />
                     </div>
                   </th>
                 </tr>
@@ -98,7 +100,7 @@ export default function Leaderboard() {
               <tbody>
                 {isLoading && (
                   <tr>
-                    <td colSpan={5} className="px-4 py-8 text-center text-slate-500">Loading…</td>
+                    <td colSpan={5} className="px-4 py-8 text-center text-slate-500">{t("lb.loading")}</td>
                   </tr>
                 )}
                 {!isLoading &&
@@ -107,7 +109,7 @@ export default function Leaderboard() {
                   ))}
                 {!isLoading && rows.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="px-4 py-10 text-center text-slate-500">No rows.</td>
+                    <td colSpan={5} className="px-4 py-10 text-center text-slate-500">{t("lb.empty")}</td>
                   </tr>
                 )}
               </tbody>
@@ -120,6 +122,7 @@ export default function Leaderboard() {
 }
 
 function Row({ row, rank }: { row: LeaderboardRow; rank: number }) {
+  const t = useT();
   return (
     <tr className="border-b border-slate-100 last:border-0 hover:bg-slate-50/60 transition-colors">
       <td className="px-4 py-3 font-bold text-slate-400 tabular-nums">{rank}</td>
@@ -127,14 +130,14 @@ function Row({ row, rank }: { row: LeaderboardRow; rank: number }) {
         <div className="flex items-center gap-2">
           <span className="font-semibold text-ink-900">{row.model}</span>
           {row.agent && (
-            <span className="pill bg-brand-50 text-brand-700">Agent</span>
+            <span className="pill bg-brand-50 text-brand-700">{t("lb.tag.agent")}</span>
           )}
         </div>
         <div className="text-xs text-slate-500">{row.provider}</div>
       </td>
       <td className="px-4 py-3">
         <span className="text-xs font-medium px-2 py-1 rounded-md bg-slate-100 text-slate-700">
-          {row.agent ? "Code/PDE Agent" : "Base LLM"}
+          {row.agent ? t("lb.type.agent") : t("lb.type.llm")}
         </span>
       </td>
       <td className="px-4 py-3 text-right">

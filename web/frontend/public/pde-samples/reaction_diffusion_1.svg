@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <rect width="200" height="150" fill="#f8fafc"/>
+  <rect x="20" y="15" width="160" height="120" fill="#fff7ed" rx="6"/>
+  <g fill="#f97316" opacity="0.85">
+    <circle cx="55" cy="48" r="9"/>
+    <circle cx="100" cy="38" r="11"/>
+    <circle cx="145" cy="55" r="8"/>
+    <circle cx="65" cy="92" r="12"/>
+    <circle cx="115" cy="80" r="9"/>
+    <circle cx="155" cy="100" r="10"/>
+    <circle cx="42" cy="115" r="7"/>
+    <circle cx="100" cy="115" r="7"/>
+  </g>
+  <g fill="#fdba74" opacity="0.75">
+    <circle cx="55" cy="48" r="16"/>
+    <circle cx="100" cy="38" r="18"/>
+    <circle cx="145" cy="55" r="15"/>
+    <circle cx="65" cy="92" r="20"/>
+    <circle cx="115" cy="80" r="16"/>
+    <circle cx="155" cy="100" r="17"/>
+  </g>
+  <text x="100" y="146" font-family="ui-monospace, monospace" font-size="9" fill="#475569" text-anchor="middle">Reaction–Diffusion · Turing-style spots</text>
+</svg>

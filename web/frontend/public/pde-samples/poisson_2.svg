@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <defs>
+    <linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="50%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="150" fill="#f8fafc"/>
+  <path d="M20,135 L20,15 L180,15 L180,135 Z" fill="url(#pg2)"/>
+  <g stroke="#fff" stroke-opacity="0.6" fill="none" stroke-width="0.8">
+    <path d="M20,115 Q60,90 100,80 T180,40"/>
+    <path d="M20,90 Q60,70 100,55 T180,30"/>
+    <path d="M20,65 Q60,55 100,40 T180,25"/>
+  </g>
+  <text x="100" y="146" font-family="ui-monospace, monospace" font-size="9" fill="#475569" text-anchor="middle">Poisson · variable conductivity</text>
+</svg>

@@ -2,16 +2,27 @@ import { motion } from "framer-motion";
 import { ArrowRight, Github, BookOpen, Database, Sparkles } from "lucide-react";
 import { useStats } from "@/lib/api";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import { useLang } from "@/lib/i18n";
 
 export default function Hero() {
   const { data: stats } = useStats();
+  const { lang, t } = useLang();
 
   const counters = [
-    { value: stats?.totalCases ?? 645, label: "Benchmark Cases" },
-    { value: stats?.pdeTypes ?? 11, label: "PDE Families" },
-    { value: stats?.backends ?? 3, label: "FEM Library Tracks" },
-    { value: stats?.modelsEvaluated ?? 8, label: "Systems Evaluated" },
+    { value: stats?.totalCases ?? 645, label: t("hero.counter.cases") },
+    { value: stats?.pdeTypes ?? 11, label: t("hero.counter.pdes") },
+    { value: stats?.backends ?? 3, label: t("hero.counter.tracks") },
+    { value: stats?.modelsEvaluated ?? 8, label: t("hero.counter.systems") },
   ];
+
+  // Render the bold inline span ("multi-metric, multi-library" / "多指标、多库") inside the description
+  // by splitting on the bold marker text in each language.
+  const desc = t("hero.desc");
+  const boldA = t("hero.descBoldA");
+  const parts = desc.split(boldA);
+  const beforeBold = parts[0] ?? desc;
+  const afterBold = parts.length > 1 ? parts.slice(1).join(boldA) : "";
+  const showBold = parts.length > 1;
 
   return (
     <section id="home" className="relative hero-bg text-white overflow-hidden pt-32 pb-24">
@@ -28,7 +39,7 @@ export default function Hero() {
         >
           <span className="pill bg-white/10 text-white border border-white/15 backdrop-blur">
             <Sparkles className="w-3 h-3" />
-            Under Review
+            {t("hero.badge")}
           </span>
 
           <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05]">
@@ -36,18 +47,28 @@ export default function Hero() {
             <span className="text-white">-Bench</span>
           </h1>
 
-          <p className="mt-6 text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-            A <strong className="text-white">multi-metric, multi-library</strong> benchmark for PDE-to-solver code generation —
-            645 cases across 11 PDE families and three professional FEM libraries
-            (DOLFINx, Firedrake, deal.II), staged through executability, accuracy, and runtime gates.
+          <p
+            className={`mt-6 ${
+              lang === "zh" ? "text-base sm:text-lg" : "text-lg sm:text-xl"
+            } text-white/80 max-w-3xl mx-auto leading-relaxed`}
+          >
+            {showBold ? (
+              <>
+                {beforeBold}
+                <strong className="text-white">{boldA}</strong>
+                {afterBold}
+              </>
+            ) : (
+              desc
+            )}
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <a href="#leaderboard" className="btn btn-primary">
-              View Leaderboard <ArrowRight className="w-4 h-4" />
+              {t("hero.btn.viewLeaderboard")} <ArrowRight className="w-4 h-4" />
             </a>
-            <a href="#citation" className="btn btn-ghost">
-              <BookOpen className="w-4 h-4" /> Read Paper
+            <a href="#/paper" className="btn btn-ghost">
+              <BookOpen className="w-4 h-4" /> {t("hero.btn.readPaper")}
             </a>
             <a
               href="https://github.com/YusanX/pde-agent-bench"
@@ -55,7 +76,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="btn btn-ghost"
             >
-              <Github className="w-4 h-4" /> GitHub
+              <Github className="w-4 h-4" /> {t("hero.btn.github")}
             </a>
             <a
               href="https://huggingface.co/datasets/eclipse00/PDEAgent-Bench"
@@ -63,7 +84,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="btn btn-ghost"
             >
-              <Database className="w-4 h-4" /> Dataset
+              <Database className="w-4 h-4" /> {t("hero.btn.dataset")}
             </a>
           </div>
 

@@ -1,15 +1,18 @@
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
 import { useCitation } from "@/lib/api";
+import { useLang } from "@/lib/i18n";
 
 export default function Abstract() {
   const { data } = useCitation();
+  const { lang, t } = useLang();
+  const abstract = lang === "zh" ? t("abstract.zhOverride") : data?.abstract ?? "";
 
   return (
     <section className="py-20">
       <div className="container-page">
         <SectionHeader
-          tag="Paper"
+          tag={t("abstract.tag")}
           title={data?.title ?? "PDEAgent-Bench"}
           desc={data?.venue}
         />
@@ -21,10 +24,10 @@ export default function Abstract() {
           className="card max-w-4xl mx-auto p-8 sm:p-10"
         >
           <h3 className="text-xs font-semibold uppercase tracking-wider text-brand-700 mb-4">
-            Abstract
+            {t("abstract.heading")}
           </h3>
           <div className="prose-like text-slate-700 leading-relaxed space-y-4">
-            {(data?.abstract ?? "").split("\n\n").map((p, i) => (
+            {abstract.split("\n\n").map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>

@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useAuthors } from "@/lib/api";
+import { useT } from "@/lib/i18n";
 
 export default function Authors() {
   const { data } = useAuthors();
+  const t = useT();
   if (!data) return null;
 
   const hasEqual = data.authors.some((a) => a.isEqual);
@@ -11,8 +13,8 @@ export default function Authors() {
     <section className="py-14 border-b border-slate-200/70 bg-slate-50/50">
       <div className="container-page">
         <div className="text-center mb-8">
-          <span className="section-tag">Team</span>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight">Authors</h2>
+          <span className="section-tag">{t("authors.tag")}</span>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight">{t("authors.title")}</h2>
         </div>
         <div className="flex flex-wrap items-stretch justify-center gap-2.5 max-w-5xl mx-auto">
           {data.authors.map((a, i) => (
@@ -54,8 +56,8 @@ export default function Authors() {
         </div>
         {hasEqual && (
           <div className="mt-4 text-center text-xs text-slate-500">
-            <span className="text-amber-500 font-bold">*</span> equal contribution &nbsp;·&nbsp;
-            <span className="text-brand-600 font-bold">✦</span> corresponding author
+            <span className="text-amber-500 font-bold">*</span> {t("authors.equalNote")} &nbsp;·&nbsp;
+            <span className="text-brand-600 font-bold">✦</span> {t("authors.correspondingNote")}
           </div>
         )}
       </div>

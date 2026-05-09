@@ -17,6 +17,7 @@ import {
 import SectionHeader from "@/components/SectionHeader";
 import { useLeaderboard, usePdeTypes } from "@/lib/api";
 import { cn, BACKEND_LABELS } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const PALETTE = ["#3f60e6", "#22d3ee", "#a78bfa", "#f59e0b", "#fb7185", "#34d399", "#0ea5e9", "#ef4444"];
 
@@ -31,6 +32,7 @@ export default function ResultsExplorer() {
   const [backend, setBackend] = useState<string>("dolfinx");
   const { data: rows = [] } = useLeaderboard(backend);
   const { data: pdes = [] } = usePdeTypes();
+  const t = useT();
 
   // Only show PDE families covered by the selected backend (Firedrake skips N-S/Burgers/Wave; deal.II skips Burgers/Wave).
   const supportedPdes = useMemo(
@@ -45,7 +47,10 @@ export default function ResultsExplorer() {
 
   const radarData = useMemo(() => {
     return supportedPdes.map((p) => {
-      const point: Record<string, string | number> = { pde: p.abbr };
+      const point: Record<string, string | number> = {
+        pde: p.abbr,
+        pdeFull: p.name,
+      };
       sortedRows.forEach((m) => {
         const v = m.pdeScores[p.id];
         if (typeof v === "number") point[m.model] = v;
@@ -67,14 +72,14 @@ export default function ResultsExplorer() {
     <section id="explorer" className="py-20 bg-slate-50/60 border-y border-slate-200/70">
       <div className="container-page">
         <SectionHeader
-          tag="Interactive"
-          title="Results Explorer"
-          desc="Compare per-PDE-family pass rates across all 8 evaluated systems on each FEM-library track. Numbers are taken verbatim from Tables 2 and 9 of the paper."
+          tag={t("explorer.tag")}
+          title={t("explorer.title")}
+          desc={t("explorer.desc")}
         />
 
         <div className="mb-6 flex items-center gap-3 flex-wrap">
           <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-            FEM library
+            {t("explorer.label.femLibrary")}
           </div>
           <div className="inline-flex p-1 rounded-xl bg-white border border-slate-200">
             {(["dolfinx", "firedrake", "dealii"] as const).map((b) => (
@@ -93,21 +98,52 @@ export default function ResultsExplorer() {
             ))}
           </div>
           <div className="text-xs text-slate-500">
-            · {supportedPdes.length} PDE families on this track · {sortedRows.length} systems
+            {t("explorer.label.tracksFams", { n: supportedPdes.length, m: sortedRows.length })}
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
           <div className="card p-5 lg:col-span-3">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-semibold text-ink-900">Per-PDE Pass Rate (single-shot)</h3>
-              <span className="text-xs text-slate-500">radar · 0–100%</span>
+              <h3 className="font-semibold text-ink-900">{t("explorer.radarTitle")}</h3>
+              <span className="text-xs text-slate-500">{t("explorer.radarSub")}</span>
             </div>
             <div className="h-[460px]">
               <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={radarData} outerRadius="78%">
+                <RadarChart
+                  data={radarData}
+                  outerRadius="72%"
+                  margin={{ top: 16, right: 70, bottom: 16, left: 70 }}
+                >
                   <PolarGrid stroke="#e2e8f0" />
-                  <PolarAngleAxis dataKey="pde" tick={{ fill: "#475569", fontSize: 11 }} />
+                  <PolarAngleAxis
+                    dataKey="pde"
+                    tick={({ payload, x, y, textAnchor }) => {
+                      const idx = radarData.findIndex((d) => d.pde === payload.value);
+                      const full = (radarData[idx]?.pdeFull as string) ?? "";
+                      return (
+                        <g transform={`translate(${x},${y})`}>
+                          <text
+                            textAnchor={textAnchor}
+                            dy={4}
+                            fontSize={11}
+                            fill="#475569"
+                            fontWeight={600}
+                          >
+                            {payload.value}
+                          </text>
+                          <text
+                            textAnchor={textAnchor}
+                            dy={16}
+                            fontSize={9}
+                            fill="#94a3b8"
+                          >
+                            {full}
+                          </text>
+                        </g>
+                      );
+                    }}
+                  />
                   <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fill: "#94a3b8", fontSize: 10 }} />
                   {sortedRows.map((m, i) => (
                     <Radar
@@ -121,16 +157,43 @@ export default function ResultsExplorer() {
                     />
                   ))}
                   <Legend wrapperStyle={{ fontSize: 11, paddingTop: 12 }} />
-                  <Tooltip />
+                  <Tooltip
+                    wrapperStyle={{ zIndex: 50, pointerEvents: "none" }}
+                    allowEscapeViewBox={{ x: true, y: true }}
+                    position={{ x: -56, y: 0 }}
+                    offset={0}
+                    cursor={false}
+                    contentStyle={{
+                      background: "rgba(255,255,255,0.97)",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: 8,
+                      boxShadow: "0 10px 30px rgba(15,23,42,0.18)",
+                      fontSize: 11,
+                      maxWidth: 230,
+                    }}
+                    labelFormatter={(label, payload) => {
+                      const full = (payload?.[0]?.payload?.pdeFull as string) ?? "";
+                      return full ? `${label} · ${full}` : String(label);
+                    }}
+                  />
                 </RadarChart>
               </ResponsiveContainer>
+            </div>
+            <div className="mt-3 text-[11px] text-slate-500 leading-relaxed">
+              <span className="font-semibold">{t("explorer.axisLegend")}</span>{" "}
+              {supportedPdes.map((p, i) => (
+                <span key={p.id}>
+                  <span className="font-mono text-slate-700">{p.abbr}</span> = {p.name}
+                  {i < supportedPdes.length - 1 ? " · " : ""}
+                </span>
+              ))}
             </div>
           </div>
 
           <div className="card p-5 lg:col-span-2">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-semibold text-ink-900">Overall Pass Rate</h3>
-              <span className="text-xs text-slate-500">bars · %</span>
+              <h3 className="font-semibold text-ink-900">{t("explorer.barTitle")}</h3>
+              <span className="text-xs text-slate-500">{t("explorer.barSub")}</span>
             </div>
             <div className="h-[460px]">
               <ResponsiveContainer width="100%" height="100%">

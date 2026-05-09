@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <rect width="200" height="150" fill="#f8fafc"/>
+  <rect x="20" y="15" width="160" height="120" fill="#7c2d12" rx="6"/>
+  <g fill="none" stroke-width="1.2">
+    <circle cx="100" cy="75" r="14" stroke="#fef3c7"/>
+    <circle cx="100" cy="75" r="26" stroke="#fde68a" stroke-opacity="0.85"/>
+    <circle cx="100" cy="75" r="40" stroke="#fbbf24" stroke-opacity="0.65"/>
+    <circle cx="100" cy="75" r="54" stroke="#fb923c" stroke-opacity="0.55"/>
+    <circle cx="100" cy="75" r="68" stroke="#ea580c" stroke-opacity="0.4"/>
+  </g>
+  <text x="100" y="146" font-family="ui-monospace, monospace" font-size="9" fill="#475569" text-anchor="middle">Wave · radial pulse propagation</text>
+</svg>

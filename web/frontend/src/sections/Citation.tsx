@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Copy, Check, FileText } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import { useCitation } from "@/lib/api";
+import { useT } from "@/lib/i18n";
 
 export default function Citation() {
   const { data } = useCitation();
   const [copied, setCopied] = useState(false);
+  const t = useT();
 
   const handleCopy = async () => {
     if (!data?.bibtex) return;
@@ -17,7 +19,7 @@ export default function Citation() {
   return (
     <section id="citation" className="py-20 bg-slate-50/60 border-t border-slate-200/70">
       <div className="container-page">
-        <SectionHeader tag="Citation" title="Cite Our Work" desc={data?.venue} />
+        <SectionHeader tag={t("cite.tag")} title={t("cite.title")} desc={data?.venue} />
 
         <div className="card max-w-4xl mx-auto overflow-hidden">
           <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200">
@@ -30,11 +32,11 @@ export default function Citation() {
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-500" /> Copied
+                  <Check className="w-3.5 h-3.5 text-emerald-500" /> {t("cite.copied")}
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" /> Copy BibTeX
+                  <Copy className="w-3.5 h-3.5" /> {t("cite.copy")}
                 </>
               )}
             </button>

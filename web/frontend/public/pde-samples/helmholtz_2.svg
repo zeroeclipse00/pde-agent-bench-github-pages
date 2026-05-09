@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <rect width="200" height="150" fill="#f8fafc"/>
+  <rect x="20" y="15" width="160" height="120" fill="#0c4a6e" rx="6"/>
+  <g fill="none" stroke-width="1.4">
+    <path d="M20,75 L180,75" stroke="#bae6fd"/>
+    <path d="M20,55 Q40,30 60,55 T100,55 T140,55 T180,55" stroke="#7dd3fc"/>
+    <path d="M20,95 Q40,70 60,95 T100,95 T140,95 T180,95" stroke="#7dd3fc"/>
+    <path d="M20,35 Q35,15 50,35 T80,35 T110,35 T140,35 T170,35" stroke="#38bdf8"/>
+    <path d="M20,115 Q35,95 50,115 T80,115 T110,115 T140,115 T170,115" stroke="#38bdf8"/>
+  </g>
+  <text x="100" y="146" font-family="ui-monospace, monospace" font-size="9" fill="#475569" text-anchor="middle">Helmholtz · plane wave field</text>
+</svg>

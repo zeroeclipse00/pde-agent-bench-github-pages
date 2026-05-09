@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <rect width="200" height="150" fill="#f8fafc"/>
+  <rect x="20" y="15" width="160" height="120" fill="#fef2f2" rx="6"/>
+  <g fill="none" stroke-width="1.6">
+    <path d="M25,110 Q60,110 90,108 L98,40 L102,40 L110,108 Q140,110 175,110" stroke="#dc2626"/>
+    <path d="M25,110 Q60,108 95,90 Q102,68 110,90 Q140,108 175,110" stroke="#ef4444" stroke-opacity="0.7"/>
+    <path d="M25,110 Q60,105 95,75 Q102,42 110,75 Q140,105 175,110" stroke="#f87171" stroke-opacity="0.55"/>
+  </g>
+  <g stroke="#475569" stroke-width="0.6">
+    <line x1="20" y1="115" x2="180" y2="115"/>
+  </g>
+  <text x="100" y="146" font-family="ui-monospace, monospace" font-size="9" fill="#475569" text-anchor="middle">Burgers · shock formation</text>
+</svg>

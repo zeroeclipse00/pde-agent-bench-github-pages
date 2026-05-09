@@ -1,25 +1,29 @@
 import { useState } from "react";
 import { Copy, Check, Terminal } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
+import { useT } from "@/lib/i18n";
 
-const steps = [
-  {
-    title: "Clone & Install",
-    code: `git clone https://github.com/YusanX/pde-agent-bench
+export default function GettingStarted() {
+  const t = useT();
+
+  const steps = [
+    {
+      title: t("gs.step.clone"),
+      code: `git clone https://github.com/YusanX/pde-agent-bench
 cd pde-agent-bench
 pip install -e ".[fenicsx]"      # DOLFINx backend
 # or: pip install -e ".[agents]"  # for CodePDE/OpenHands agent support`,
-  },
-  {
-    title: "Configure API Keys",
-    code: `export OPENAI_API_KEY="sk-..."
+    },
+    {
+      title: t("gs.step.keys"),
+      code: `export OPENAI_API_KEY="sk-..."
 export ANTHROPIC_API_KEY="sk-ant-..."
 export GOOGLE_API_KEY="..."        # Gemini
 export DASHSCOPE_API_KEY="..."     # Qwen`,
-  },
-  {
-    title: "Run Evaluation",
-    code: `# Evaluate GPT-4o on the full DOLFINx benchmark v2
+    },
+    {
+      title: t("gs.step.run"),
+      code: `# Evaluate GPT-4o on the full DOLFINx benchmark v2
 python scripts/run_benchmark.py \\
   --agent gpt-4o \\
   --backend dolfinx \\
@@ -30,18 +34,13 @@ python scripts/run_benchmark.py \\
   --agent claude-sonnet-3-5 \\
   --pde_types poisson heat navier_stokes \\
   --mode fix_accuracy`,
-  },
-];
+    },
+  ];
 
-export default function GettingStarted() {
   return (
     <section id="getting-started" className="py-20">
       <div className="container-page">
-        <SectionHeader
-          tag="Quick Start"
-          title="Getting Started"
-          desc="Run PDEAgent-Bench in minutes. Pick your backend — DOLFINx, Firedrake, or deal.II."
-        />
+        <SectionHeader tag={t("gs.tag")} title={t("gs.title")} desc={t("gs.desc")} />
 
         <div className="space-y-4 max-w-4xl mx-auto">
           {steps.map((s, i) => (
@@ -55,6 +54,7 @@ export default function GettingStarted() {
 
 function CodeStep({ num, title, code }: { num: number; title: string; code: string }) {
   const [copied, setCopied] = useState(false);
+  const t = useT();
   const handleCopy = async () => {
     await navigator.clipboard.writeText(code);
     setCopied(true);
@@ -76,11 +76,11 @@ function CodeStep({ num, title, code }: { num: number; title: string; code: stri
         >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-emerald-500" /> Copied
+              <Check className="w-3.5 h-3.5 text-emerald-500" /> {t("gs.copied")}
             </>
           ) : (
             <>
-              <Copy className="w-3.5 h-3.5" /> Copy
+              <Copy className="w-3.5 h-3.5" /> {t("gs.copy")}
             </>
           )}
         </button>

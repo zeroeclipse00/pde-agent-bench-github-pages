@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+  <defs>
+    <radialGradient id="h2" cx="30%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="40%" stop-color="#ef4444"/>
+      <stop offset="80%" stop-color="#fcd34d"/>
+      <stop offset="100%" stop-color="#fffbeb"/>
+    </radialGradient>
+  </defs>
+  <rect width="200" height="150" fill="#f8fafc"/>
+  <rect x="20" y="15" width="160" height="120" fill="url(#h2)" rx="6"/>
+  <g stroke="#fff" stroke-opacity="0.5" fill="none">
+    <ellipse cx="68" cy="75" rx="14" ry="14"/>
+    <ellipse cx="68" cy="75" rx="28" ry="28"/>
+    <ellipse cx="68" cy="75" rx="44" ry="44"/>
+    <ellipse cx="68" cy="75" rx="62" ry="62"/>
+  </g>
+  <text x="100" y="146" font-family="ui-monospace, monospace" font-size="9" fill="#475569" text-anchor="middle">Heat · localized hot spot</text>
+</svg>
