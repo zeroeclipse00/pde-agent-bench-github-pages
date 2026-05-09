@@ -1,6 +1,8 @@
 # PDEAgent-Bench: A Multi-Metric, Multi-Library Benchmark for PDE Solver Generation
 
-<img src="assets/logo.png" width="600" alt="PDEAgent-Bench logo" />
+<p align="center">
+  <img src="assets/logo.png" width="600" alt="PDEAgent-Bench logo" />
+</p>
 
 **PDEAgent-Bench** is a benchmark for evaluating LLM-based agents on partial differential equation (PDE) solving tasks. This repository hosts the official project page, deployed automatically to GitHub Pages via GitHub Actions.
 
