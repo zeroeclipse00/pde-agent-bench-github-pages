@@ -103,6 +103,51 @@ const dict: Record<string, DictEntry> = {
     en: "The number after each label is the per-family case count on that FEM-library track; greyed-out entries mean the family is not included for that library.",
     zh: "每个缩写后的数字表示该 FEM 库赛道上对应家族的实例数；灰色条目表示该家族未包含在该库中。",
   },
+  // PDE family description texts (mirrors mock.json descriptions)
+  "pde.desc.poisson": {
+    en: "Steady-state second-order elliptic problem on Ω with Dirichlet/Neumann data; canonical FEM testbed for diffusion-type operators.",
+    zh: "Ω 上具有 Dirichlet/Neumann 边界条件的二阶稳态椭圆问题；扩散型算子的 FEM 经典测试案例。",
+  },
+  "pde.desc.helmholtz": {
+    en: "Indefinite frequency-domain wave operator; conditioning depends on the wavenumber k and resolution-per-wavelength.",
+    zh: "不定频域波动算子；条件数取决于波数 k 和每波长的分辨率。",
+  },
+  "pde.desc.biharmonic": {
+    en: "Fourth-order plate-bending operator; requires C¹-conforming or DG/Nitsche formulations.",
+    zh: "四阶板弯曲算子；需要 C¹ 协调元或 DG/Nitsche 格式。",
+  },
+  "pde.desc.linear_elasticity": {
+    en: "Vector-valued solid-mechanics system; tests locking-free elements and proper symmetric-stress assembly.",
+    zh: "向量值固体力学方程组；检验无锁单元和正确的对称应力装配。",
+  },
+  "pde.desc.heat": {
+    en: "Linear parabolic transient diffusion; tests time-stepping schemes and parabolic stability.",
+    zh: "线性抛物型瞬态扩散；检验时间步进格式和抛物稳定性。",
+  },
+  "pde.desc.convection_diffusion": {
+    en: "Singularly perturbed advection–diffusion across Péclet regimes; requires stabilization in convection-dominated cases.",
+    zh: "跨 Péclet 数范围的奇异扰动对流扩散问题；对流主导时需要稳定化格式。",
+  },
+  "pde.desc.reaction_diffusion": {
+    en: "Reaction-diffusion equilibria with linear or nonlinear reaction term R(u); tests Newton solvers and stiff coupling.",
+    zh: "含线性或非线性反应项 R(u) 的反应扩散平衡问题；检验 Newton 求解器和刚性耦合。",
+  },
+  "pde.desc.stokes": {
+    en: "Saddle-point incompressible Stokes flow; demands inf-sup stable mixed elements and pressure null-space handling.",
+    zh: "鞍点型不可压 Stokes 流；需要满足 inf-sup 条件的混合元和压力零空间处理。",
+  },
+  "pde.desc.navier_stokes": {
+    en: "Steady incompressible Navier–Stokes; nonlinear advection requires Newton/Picard linearization with robust preconditioners.",
+    zh: "定常不可压 Navier–Stokes 方程；非线性对流项需要 Newton/Picard 线性化及鲁棒预条件器。",
+  },
+  "pde.desc.burgers": {
+    en: "Nonlinear parabolic transport with shock formation; tests stabilized nonlinear time-dependent solvers.",
+    zh: "含激波生成的非线性抛物型输运问题；检验稳定化的非线性时变求解器。",
+  },
+  "pde.desc.wave": {
+    en: "Second-order hyperbolic wave propagation; requires symplectic or Newmark time integration.",
+    zh: "二阶双曲波动传播；需要辛积分或 Newmark 时间积分格式。",
+  },
 
   // Leaderboard
   "lb.tag": { en: "Results", zh: "结果" },

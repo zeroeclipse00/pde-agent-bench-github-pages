@@ -518,7 +518,7 @@ function PdeCard({
       </div>
 
       <p className="px-6 pt-4 text-[13px] text-slate-600 leading-relaxed">
-        {pde.description}
+        {t(`pde.desc.${pde.id}` as Parameters<typeof t>[0]) || pde.description}
       </p>
 
       {fields.length > 0 && (
