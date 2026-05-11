@@ -144,7 +144,7 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <div className="flex gap-2 pt-2">
+            <div className="flex gap-2 pt-2 flex-wrap">
               <a
                 href="https://github.com/YusanX/pde-agent-bench"
                 target="_blank"

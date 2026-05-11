@@ -2,8 +2,6 @@ import { createContext, useCallback, useContext, useEffect, useState, type React
 
 export type Lang = "en" | "zh";
 
-const STORAGE_KEY = "pdeagent.lang";
-
 type DictEntry = { en: string; zh: string };
 
 // Flat keys keep the dictionary easy to scan. Use double-brace placeholders for interpolation.
@@ -518,11 +516,6 @@ function readInitialLang(): Lang {
   const hash = window.location.hash.toLowerCase();
   if (hash.includes("lang=zh")) return "zh";
   if (hash.includes("lang=en")) return "en";
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored === "zh" || stored === "en") return stored;
-  // Auto-detect from browser language.
-  const nav = (navigator.language || "").toLowerCase();
-  if (nav.startsWith("zh")) return "zh";
   return "en";
 }
 
@@ -531,11 +524,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLang = useCallback((l: Lang) => {
     setLangState(l);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, l);
-    } catch {
-      // ignore quota / private mode
-    }
     if (typeof document !== "undefined") {
       document.documentElement.lang = l === "zh" ? "zh-CN" : "en";
     }

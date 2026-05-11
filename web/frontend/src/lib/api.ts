@@ -161,3 +161,36 @@ export function withBase(path: string): string {
   const trimmed = path.replace(/^\//, "");
   return `${import.meta.env.BASE_URL}${trimmed}`;
 }
+
+// ── Live Demo ─────────────────────────────────────────────────────────────────
+// In dev: Vite proxies /api → localhost:8000 (same server, no extra config needed).
+// In prod: set VITE_DEMO_API_BASE to the deployed FastAPI origin, e.g.:
+//   VITE_DEMO_API_BASE=http://202.38.69.241:8000/api
+export const DEMO_BASE: string | null =
+  import.meta.env.VITE_DEMO_API_BASE ?? (import.meta.env.DEV ? "/api" : null);
+
+export type DemoCaseInfo = {
+  id: string;
+  display_name: string;
+  pde_type: string;
+  category: string;
+  backend: string;
+  difficulty: string;
+  nl_description: string;
+  description: string;
+  oracle_l2_error: number | null;
+  oracle_runtime: number | null;
+};
+
+export type DemoJobStatus = {
+  job_id: string;
+  status: "pending" | "generating" | "executing" | "evaluating" | "done" | "failed";
+  code: string | null;
+  stdout: string | null;
+  stderr: string | null;
+  image_b64: string | null;
+  l2_error: number | null;
+  runtime: number | null;
+  passed: boolean | null;
+  error_msg: string | null;
+};

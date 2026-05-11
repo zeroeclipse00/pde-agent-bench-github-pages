@@ -91,3 +91,4 @@ class Citation(BaseModel):
     year: int
     abstract: str
     bibtex: str
+
