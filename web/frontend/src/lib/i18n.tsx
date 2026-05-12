@@ -332,14 +332,9 @@ const dict: Record<string, DictEntry> = {
   "paper.code": { en: "Code", zh: "代码仓库" },
   "paper.dataset": { en: "Dataset", zh: "数据集" },
   "paper.contact": { en: "Contact", zh: "联系" },
-  "paper.mockedNote": { en: "mocked arXiv link", zh: "占位的 arXiv 链接" },
-  "paper.pdfMockAlert": {
-    en: "PDF link will be available once the paper is posted on arXiv.",
-    zh: "论文上线 arXiv 后即可下载 PDF。",
-  },
   "paper.previewNote": {
-    en: "This in-browser preview is rendered from the same source data the rest of the site uses; the official PDF and arXiv listing will replace the placeholder identifiers above once the paper is posted.",
-    zh: "本页内的预览与站点其余部分共用同一份数据源；论文正式上线 arXiv 后，上方的占位标识将被替换为正式的 PDF 与 arXiv 链接。",
+    en: "This in-browser preview is rendered from the same source data the rest of the site uses. For the authoritative version, see the arXiv listing.",
+    zh: "本页内的预览与站点其余部分共用同一份数据源。如需权威版本，请参见 arXiv 页面。",
   },
   "paper.section.abstract": { en: "Abstract", zh: "摘要" },
   "paper.section.intro": { en: "1  Introduction", zh: "一  引言" },

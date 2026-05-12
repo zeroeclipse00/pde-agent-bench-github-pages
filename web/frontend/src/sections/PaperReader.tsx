@@ -16,8 +16,10 @@ import { useCitation, useAuthors, useFigures, withBase } from "@/lib/api";
 import TeX from "@/components/TeX";
 import { useLang } from "@/lib/i18n";
 
-const MOCK_ARXIV_ID = "arXiv:2606.XXXXX";
-const MOCK_DOI = "10.48550/arXiv.2606.XXXXX";
+const ARXIV_ID = "arXiv:2605.09636";
+const ARXIV_URL = "http://arxiv.org/abs/2605.09636";
+const ARXIV_PDF_URL = "https://arxiv.org/pdf/2605.09636";
+const DOI = "10.48550/arXiv.2605.09636";
 
 type Section = {
   id: string;
@@ -1411,7 +1413,7 @@ export default function PaperReader() {
             {t("paper.back")}
           </a>
           <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500">
-            <span className="font-mono">{MOCK_ARXIV_ID}</span>
+            <span className="font-mono">{ARXIV_ID}</span>
             <span className="text-slate-300">·</span>
             <span>cs.LG</span>
             <span className="text-slate-300">·</span>
@@ -1429,12 +1431,10 @@ export default function PaperReader() {
               {langLabel}
             </button>
             <a
-              href={withBase("paper.pdf")}
+              href={ARXIV_PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-secondary !py-1.5 !px-3 text-xs"
-              onClick={(e) => {
-                e.preventDefault();
-                alert(t("paper.pdfMockAlert"));
-              }}
             >
               <Download className="w-3.5 h-3.5" /> PDF
             </a>
@@ -1510,7 +1510,7 @@ export default function PaperReader() {
           {/* Paper header */}
           <div className="px-6 sm:px-10 pt-10 pb-6 border-b border-slate-200">
             <div className="text-xs font-mono text-slate-500 mb-3">
-              {MOCK_ARXIV_ID} · doi:{MOCK_DOI}{" "}
+              {ARXIV_ID} · doi:{DOI}{" "}
               <span className="ml-1 inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 font-sans font-semibold">
                 {t("paper.preview")}
               </span>
@@ -1539,9 +1539,14 @@ export default function PaperReader() {
               >
                 <Mail className="w-3 h-3" /> ✦ {correspondingEmail}
               </a>
-              <span className="pill bg-amber-50 text-amber-700">
-                <ExternalLink className="w-3 h-3" /> {t("paper.mockedNote")}
-              </span>
+              <a
+                href={ARXIV_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pill bg-brand-50 text-brand-700 hover:bg-brand-100"
+              >
+                <ExternalLink className="w-3 h-3" /> arXiv
+              </a>
             </div>
           </div>
 
