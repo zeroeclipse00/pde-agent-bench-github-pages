@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Github, BookOpen, Database, Sparkles } from "lucide-react";
+import { ArrowRight, Github, BookOpen, Database } from "lucide-react";
 import { useStats } from "@/lib/api";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import { useLang } from "@/lib/i18n";
@@ -37,11 +37,6 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center"
         >
-          <span className="pill bg-white/10 text-white border border-white/15 backdrop-blur">
-            <Sparkles className="w-3 h-3" />
-            {t("hero.badge")}
-          </span>
-
           <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05]">
             <span className="gradient-text">PDEAgent</span>
             <span className="text-white">-Bench</span>
