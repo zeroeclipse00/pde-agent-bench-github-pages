@@ -37,8 +37,10 @@ For local development and technical details, see [web/README.md](web/README.md).
             Chao Yao, Zhanhua Hu, Jianqing Zhang, Pengwei Liu,
             Yaomin Shen, Xingyu Ren, Lei Liu, Zikang Xu, Han Li,
             Qingsong Yao, Hande Dong, Hong Wang},
-  year   = {2026},
-  note   = {Under review at NeurIPS 2026},
-  url    = {https://github.com/YusanX/pde-agent-bench}
+  year = {2026},
+  eprint = {2605.09636},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  url = {https://arxiv.org/abs/2605.09636}, 
 }
 ```
