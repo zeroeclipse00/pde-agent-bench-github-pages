@@ -903,11 +903,11 @@ export default function PaperReader() {
               Gemini 3.1 Pro {">"} Opus 4.7 ≈ GPT-5.4 is preserved. Varying <TeX math="\alpha_{\mathrm{time}}" /> from
               1 to 5 changes each model's pass rate by at most 4 percentage points.</P>
             <figure className="my-5">
-              <img src="figures/acc_threshold_sensitivity.png" alt="Figure 7" className="rounded-lg w-full max-w-xl mx-auto block" />
+              <img src={withBase("figures/acc_threshold_sensitivity.png")} alt="Figure 7" className="rounded-lg w-full max-w-xl mx-auto block" />
               <figcaption className="mt-2 text-xs text-center text-slate-600">Figure 7: DOLFINx pass rate for the three top-performing models as a function of the accuracy multiplier α_acc, with α_time = 3 fixed. The dashed vertical line marks the default value α_acc = 10.</figcaption>
             </figure>
             <figure className="my-5">
-              <img src="figures/time_threshold_sensitivity.png" alt="Figure 8" className="rounded-lg w-full max-w-xl mx-auto block" />
+              <img src={withBase("figures/time_threshold_sensitivity.png")} alt="Figure 8" className="rounded-lg w-full max-w-xl mx-auto block" />
               <figcaption className="mt-2 text-xs text-center text-slate-600">Figure 8: DOLFINx pass rate for the three top-performing models as a function of the runtime multiplier α_time, with α_acc = 10 fixed. The dashed vertical line marks the default value α_time = 3.</figcaption>
             </figure>
           </div>
@@ -1415,7 +1415,7 @@ export default function PaperReader() {
           <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500">
             <span className="font-mono">{ARXIV_ID}</span>
             <span className="text-slate-300">·</span>
-            <span>cs.LG</span>
+            <span>cs.AI</span>
             <span className="text-slate-300">·</span>
             <span>{citation?.venue ?? "Under Review"}</span>
           </div>
