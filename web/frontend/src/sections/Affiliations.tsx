@@ -37,7 +37,7 @@ export default function Affiliations() {
         <div className="text-center mb-8">
           <span className="section-tag">{t("aff.tag")}</span>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-10 lg:gap-x-6 max-w-6xl mx-auto">
           {data.affiliations.map((abbr, i) => {
             const meta = LOGO_MAP[abbr];
             const fullName = meta?.fullName ?? abbr;
@@ -50,9 +50,9 @@ export default function Affiliations() {
                 viewport={{ once: true }}
                 transition={{ delay: Math.min(i * 0.04, 0.4) }}
                 title={fullName}
-                className="flex flex-col items-center justify-end gap-3 w-40"
+                className="flex flex-col items-center justify-end gap-3 min-w-0 w-full"
               >
-                <div className="h-24 w-36 flex items-center justify-center rounded-xl bg-slate-50 border border-slate-200/70 px-4 transition-shadow hover:shadow-sm overflow-hidden">
+                <div className="h-24 w-36 max-w-full flex items-center justify-center rounded-xl bg-slate-50 border border-slate-200/70 px-4 transition-shadow hover:shadow-sm overflow-hidden">
                   {hasLogo ? (
                     (() => {
                       const scale = meta?.scale ?? 1;
@@ -63,7 +63,7 @@ export default function Affiliations() {
                           className="object-contain"
                           style={{
                             maxHeight: `${64 * scale}px`,
-                            maxWidth: `${120 * scale}px`,
+                            maxWidth: `min(100%, ${120 * scale}px)`,
                             ...(meta?.whiteBg ? { mixBlendMode: "multiply" } : {}),
                           }}
                         />
