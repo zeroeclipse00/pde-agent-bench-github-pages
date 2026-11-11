@@ -87,9 +87,9 @@
       {"name":"Zhen Hang","affiliation":"USTC","homepage":null,"isCorresponding":false,"isEqual":true},
       {"name":"Yushan Yashengjiang","affiliation":"USTC","homepage":null,"isCorresponding":false,"isEqual":true},
       {"name":"Junhui Li","affiliation":"BUPT","homepage":null,"isCorresponding":false,"isEqual":false},
-      {"name":"Huanshuo Dong","affiliation":"USTC · Tencent","homepage":null,"isCorresponding":false,"isEqual":false},
+      {"name":"Huanshuo Dong","affiliation":"USTC","homepage":null,"isCorresponding":false,"isEqual":false},
       {"name":"Yang Wei","affiliation":"SJTU","homepage":null,"isCorresponding":false,"isEqual":false},
-      {"name":"Zhezheng Hao","affiliation":"Tencent · ZJU","homepage":null,"isCorresponding":false,"isEqual":false},
+      {"name":"Zhezheng Hao","affiliation":"ZJU","homepage":null,"isCorresponding":false,"isEqual":false},
       {"name":"Jiangtao Ma","affiliation":"NUS","homepage":null,"isCorresponding":false,"isEqual":false},
       {"name":"Songlin Bai","affiliation":"Alibaba","homepage":null,"isCorresponding":false,"isEqual":false},
       {"name":"Zhongkai Hao","affiliation":"THU","homepage":null,"isCorresponding":false,"isEqual":false},
@@ -106,13 +106,12 @@
       {"name":"Zikang Xu","affiliation":"USTC","homepage":null,"isCorresponding":false,"isEqual":false},
       {"name":"Han Li","affiliation":"TUM","homepage":null,"isCorresponding":false,"isEqual":false},
       {"name":"Qingsong Yao","affiliation":"Stanford","homepage":null,"isCorresponding":false,"isEqual":false},
-      {"name":"Hande Dong","affiliation":"Tencent","homepage":null,"isCorresponding":false,"isEqual":false},
-      {"name":"Hong Wang","affiliation":"Tencent","homepage":null,"isCorresponding":true,"isEqual":false}
+      {"name":"Hande Dong","affiliation":"USTC","homepage":null,"isCorresponding":false,"isEqual":false},
+      {"name":"Hong Wang","affiliation":"USTC","homepage":null,"isCorresponding":true,"isEqual":false}
     ],
     "affiliations": [
       "USTC",
       "BUPT",
-      "Tencent",
       "SJTU",
       "ZJU",
       "Alibaba",
@@ -122,8 +121,7 @@
       "ASU",
       "Rice",
       "TUM",
-      "Stanford",
-      "CodeBuddy"
+      "Stanford"
     ]
   },
   "findings": [

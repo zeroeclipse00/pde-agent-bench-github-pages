@@ -14,7 +14,6 @@ type LogoMeta = {
 const LOGO_MAP: Record<string, LogoMeta> = {
   USTC: { file: "ustc.svg", fullName: "University of Science and Technology of China" },
   BUPT: { file: "bupt.svg", fullName: "Beijing University of Posts and Telecommunications" },
-  Tencent: { file: "tencent.svg", fullName: "Tencent" },
   SJTU: { file: "sjtu.svg", fullName: "Shanghai Jiao Tong University" },
   ZJU: { file: "zju.svg", fullName: "Zhejiang University" },
   Alibaba: { file: "alibaba.svg", fullName: "Alibaba Group" },
@@ -25,7 +24,6 @@ const LOGO_MAP: Record<string, LogoMeta> = {
   Rice: { file: "rice.svg", fullName: "Rice University" },
   TUM: { file: "tum.svg", fullName: "Technical University of Munich" },
   Stanford: { file: "stanford.svg", fullName: "Stanford University" },
-  CodeBuddy: { file: "codebuddy.png", fullName: "CodeBuddy", whiteBg: true, scale: 1.55 },
 };
 
 export default function Affiliations() {
